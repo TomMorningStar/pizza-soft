@@ -21,7 +21,6 @@ export const Form: FC<FormProps> = ({ element, submitAction, title }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-
   const [formData, setFormData] = React.useState<IEmployee>({
     id: `${element ? element.id : ''}`,
     name: element ? element.name : '',
@@ -87,8 +86,8 @@ export const Form: FC<FormProps> = ({ element, submitAction, title }) => {
 
     if (!name && !phone && !birthday) {
       navigate('/');
-      dispatch(fetchEmployees());
       submitAction(formData);
+      dispatch(fetchEmployees());
     }
   };
 
