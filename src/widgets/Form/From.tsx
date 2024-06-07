@@ -2,11 +2,12 @@ import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BIRTHDAY, JOB, NAME, PHONE } from '../Employee/Employee';
 import { IEmployee } from '../../models/IEmployee';
-
+import { Select } from '../../entities/select';
+import { fetchEmployees } from '../../store/reducers/employees/ActionCreators';
+import { useAppDispatch } from '../../hooks/redux';
 import { LinkTo } from '../../entities/link';
 
 import s from './Form.module.scss';
-import { Select } from '../../entities/select';
 
 type FormProps = {
   element?: IEmployee;
@@ -18,6 +19,8 @@ type FormErrors = Pick<IEmployee, 'name' | 'phone' | 'birthday'>;
 
 export const Form: FC<FormProps> = ({ element, submitAction, title }) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
 
   const [formData, setFormData] = React.useState<IEmployee>({
     id: `${element ? element.id : ''}`,
@@ -84,6 +87,7 @@ export const Form: FC<FormProps> = ({ element, submitAction, title }) => {
 
     if (!name && !phone && !birthday) {
       navigate('/');
+      dispatch(fetchEmployees());
       submitAction(formData);
     }
   };
