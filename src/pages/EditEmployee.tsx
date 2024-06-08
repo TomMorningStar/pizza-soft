@@ -1,21 +1,25 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import { editEmployee, fetchEmployee } from '../store/reducers/employee/ActionCreators';
+import { fetchEmployee } from '../store/reducers/employee/ActionCreators';
 import { IEmployee } from '../models/IEmployee';
 import { Form } from '../widgets/Form';
 import { Loader } from '../features/loader';
+import { editEmployee } from '../store/reducers/employeeAction/ActionCreators';
 
 const TITLE = 'Редактирование сотрудника';
 
 export const EditEmployee = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { employee, isLoading, error } = useAppSelector((state) => state.employeeReducer);
 
-  const submit = (data: IEmployee) => {
-    dispatch(editEmployee(data));
+  const submit = async (data: IEmployee) => {
+    await dispatch(editEmployee(data)).then(() => {
+      navigate('/');
+    });
   };
 
   React.useEffect(() => {

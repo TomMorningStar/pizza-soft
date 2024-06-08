@@ -56,7 +56,6 @@ export const Employees: FC = () => {
   if (error) {
     return <div>{error}</div>;
   }
-console.log(employees);
 
   return (
     <>
