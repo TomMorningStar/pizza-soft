@@ -1,5 +1,8 @@
 import React, { FC } from 'react';
 import { Select } from '../../entities/select';
+import { Checked } from '../checked';
+
+import s from './Sort.module.scss';
 
 type SortProps = {
   sortField: 'name' | 'birthday' | '';
@@ -9,6 +12,9 @@ type SortProps = {
   handleRoleFilterChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleIsArchiveFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
+
+const SORT_LABEL = 'Сортировать по:';
+const FILTER_LABEL = 'Фильтр по должности';
 
 export const Sort: FC<SortProps> = ({
   sortField,
@@ -53,26 +59,22 @@ export const Sort: FC<SortProps> = ({
   ];
 
   return (
-    <div style={{ margin: '16px 0', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-      <label>
-        Сортировать по:
-        <Select value={sortField} action={handleSortChange} options={sortOptions} name="sort" />
-      </label>
-
-      <label>
-        Фильтр по должности:
-        <Select
-          value={roleFilter}
-          action={handleRoleFilterChange}
-          options={filterOptions}
-          name="filter"
-        />
-      </label>
-
-      <label>
-        <input type="checkbox" checked={isArchiveFilter} onChange={handleIsArchiveFilterChange} />В
-        архиве
-      </label>
+    <div className={s.sort}>
+      <Select
+        label={SORT_LABEL}
+        value={sortField}
+        action={handleSortChange}
+        options={sortOptions}
+        name="sort"
+      />
+      <Select
+        label={FILTER_LABEL}
+        value={roleFilter}
+        action={handleRoleFilterChange}
+        options={filterOptions}
+        name="filter"
+      />
+      <Checked checked={isArchiveFilter} onChange={handleIsArchiveFilterChange} />
     </div>
   );
 };

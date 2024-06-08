@@ -6,6 +6,8 @@ import { useAppSelector } from '../../hooks/redux';
 import { FormJsx } from './ui/formJsx/FormJsx';
 import { Loader } from '../../features/loader';
 
+import s from './Form.module.scss';
+
 type FormProps = {
   element?: IEmployee;
   title: string;
@@ -102,8 +104,10 @@ export const Form: FC<FormProps> = ({ element, submitAction, title }) => {
 
   return (
     <div>
-      <LinkTo path="/" label="Назад" />
-      <h1>{title}</h1>
+      <div className={s.flexEl}>
+        <h1>{title}</h1>
+        <LinkTo path="/" label="Назад" />
+      </div>
       {isLoading ? (
         <Loader />
       ) : error ? (

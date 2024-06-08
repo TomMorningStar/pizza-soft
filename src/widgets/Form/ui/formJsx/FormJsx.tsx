@@ -6,6 +6,8 @@ import { BIRTHDAY, JOB, NAME, PHONE } from '../../../Employee/Employee';
 import { Select } from '../../../../entities/select';
 
 import s from '../../Form.module.scss';
+import { InputFiled } from '../inputField/InputField';
+import { Checked } from '../../../../features/checked';
 
 type FormJsxProps = {
   handleSubmit: (e: React.FormEvent) => void;
@@ -27,55 +29,41 @@ export const FormJsx: FC<FormJsxProps> = ({
 }) => {
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>{NAME}</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          placeholder="Имя"
-        />
-        {formErrors.name && <p className={s.error}>{formErrors.name}</p>}
-      </div>
-      <div>
-        <label>{PHONE}</label>
-        <input
-          type="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          placeholder="Телефон"
-        />
-        {formErrors.phone && <p className={s.error}>{formErrors.phone}</p>}
-      </div>
-      <div>
-        <label>{BIRTHDAY}</label>
-        <input
-          type="text"
-          name="birthday"
-          value={formData.birthday}
-          onChange={handleChange}
-          placeholder="Дата рождения"
-        />
-        {formErrors.birthday && <p className={s.error}>{formErrors.birthday}</p>}
-      </div>
-      <div>
-        <label>{JOB}</label>
-        <Select value={formData.role} action={handleChange} options={roleOptions} name="role" />
-      </div>
-      <div>
-        <label style={{ display: 'flex' }}>
-          <input
-            type="checkbox"
-            name="isArchive"
-            checked={formData.isArchive}
-            onChange={handleChange}
-            style={{ cursor: 'pointer' }}
-          />
-          В архиве
-        </label>
-      </div>
+      <InputFiled
+        label={NAME}
+        onChange={handleChange}
+        formError={formErrors.name}
+        type={'text'}
+        name={'name'}
+        placeholder={'Поле для ввода'}
+        value={formData.name}
+      />
+      <InputFiled
+        label={PHONE}
+        onChange={handleChange}
+        formError={formErrors.phone}
+        type={'phone'}
+        name={'phone'}
+        placeholder={'Поле для ввода'}
+        value={formData.phone}
+      />
+      <InputFiled
+        label={BIRTHDAY}
+        onChange={handleChange}
+        formError={formErrors.birthday}
+        type={'text'}
+        name={'birthday'}
+        placeholder={'Поле для ввода'}
+        value={formData.birthday}
+      />
+      <Select
+        label={JOB}
+        value={formData.role}
+        action={handleChange}
+        options={roleOptions}
+        name="role"
+      />
+      <Checked checked={formData.isArchive} onChange={handleChange} />
       <button type="submit">Сохранить</button>
     </form>
   );

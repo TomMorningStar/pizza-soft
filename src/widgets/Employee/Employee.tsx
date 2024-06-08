@@ -19,22 +19,20 @@ export const Employee: FC<EmployeeProps> = ({ element }) => {
     <li className={s.element}>
       <Link to={`/employees/${element.id}`} className={s.link}>
         <div>
-          <span className={s.label}>{NAME}</span>
-          <span className={s.labelInfo}>{element.name}</span>
+          <div>
+            <span className={s.label}>{NAME}</span>
+            <span className={s.labelInfo}>{element.name}</span>
+          </div>
+          <div>
+            <span className={s.label}>{JOB}</span>
+            <span className={s.labelInfo}>{element.role}</span>
+          </div>
+          <div>
+            <span className={s.label}>{PHONE}</span>{' '}
+            <span className={s.labelInfo}>{element.phone}</span>
+          </div>
         </div>
-        <div>
-          <span className={s.label}>{JOB}</span>
-          <span className={s.labelInfo}>{element.role}</span>
-        </div>
-        <div>
-          <span className={s.label}>{PHONE}</span>{' '}
-          <span className={s.labelInfo}>{element.phone}</span>
-        </div>
-        <div>
-          <span className={s.label}>{BIRTHDAY}</span>{' '}
-          <span className={s.labelInfo}>{element.birthday}</span>
-        </div>
-        {element.isArchive && <div>{IS_ARCHIVE}</div>}
+        {element.isArchive && <img width={70} height={70} src="/archive.png" />}
       </Link>
     </li>
   );

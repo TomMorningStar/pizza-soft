@@ -8,11 +8,13 @@ type SelectProps = {
     label: string;
   }[];
   name: string;
+  label: string;
 };
 
-export const Select: FC<SelectProps> = ({ value, action, options, name }) => {
+export const Select: FC<SelectProps> = ({ label, value, action, options, name }) => {
   return (
     <div className="custom-select">
+      <label>{label}</label>
       <select name={name} value={value} onChange={action}>
         {options.map((el, idx) => (
           <option key={idx} value={el.value}>
