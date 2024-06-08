@@ -5,7 +5,6 @@ import { FormErrors } from '../../Form';
 import { BIRTHDAY, JOB, NAME, PHONE } from '../../../Employee/Employee';
 import { Select } from '../../../../entities/select';
 
-import s from '../../Form.module.scss';
 import { InputFiled } from '../inputField/InputField';
 import { Checked } from '../../../../features/checked';
 

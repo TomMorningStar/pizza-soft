@@ -71,6 +71,7 @@ export const Form: FC<FormProps> = ({ element, submitAction, title }) => {
         [name]: type === 'checkbox' ? checked : value,
       };
       validateFields(updatedData);
+
       return updatedData;
     });
   };

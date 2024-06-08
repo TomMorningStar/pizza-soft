@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import s from './Select.module.scss';
+
 type SelectProps = {
   value: string;
   action: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -13,11 +15,11 @@ type SelectProps = {
 
 export const Select: FC<SelectProps> = ({ label, value, action, options, name }) => {
   return (
-    <div className="custom-select">
+    <div className={s.customSelect}>
       <label>{label}</label>
-      <select name={name} value={value} onChange={action}>
+      <select className={s.select} name={name} value={value} onChange={action}>
         {options.map((el, idx) => (
-          <option key={idx} value={el.value}>
+          <option className={s.option} key={idx} value={el.value}>
             {el.label}
           </option>
         ))}
